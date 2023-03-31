@@ -1,14 +1,18 @@
 <template>
   <nav class="sticky top-0 left-0 h-20 w-full bg-accent">
     <div
-      class="max-w-6xl mx-auto justify-between h-full flex flex-row gap-3 px-3 items-center"
+      class="section justify-between h-full flex flex-row gap-3 items-center"
     >
       <span class="text-2xl font-bold tracking-[.8rem]"> SQLi </span>
       <span class="font-light space-x-6">
-        <a href="/" class=""> Home </a>
-        <a href="/shop" class=""> Shop</a>
+        <a href="/" class="transition-all font-normal hover:font-bold">
+          Home
+        </a>
+        <a href="/shop" class="transition-all font-normal hover:font-bold">
+          Shop</a
+        >
       </span>
-      <div class="flex flex-row gap-3 items-center fill-primary">
+      <div class="flex flex-row gap-6 items-center fill-primary">
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
