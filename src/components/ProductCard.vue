@@ -7,7 +7,7 @@ const imgs = reactive(product.urls);
 const imgIndex = ref(0);
 const onMouseEnter = () => {
   setTimeout(() => {
-    imgIndex.value = 1;
+    imgIndex.value = imgs.length <= 1 ? 0 : 1;
   }, 200);
 };
 
