@@ -1,14 +1,15 @@
 <script setup>
 import CollectionSection from "./CollectionSection.vue";
+import FeaturedProduct from "./FeaturedProduct.vue";
 import HeroSection from "./HeroSection.vue";
+import PromotionSection from "./PromotionSection.vue";
 </script>
 
 <template>
-  <div class="space-y-10">
-    <div class="bg-accent">
-      <HeroSection />
-    </div>
+  <div class="space-y-16 lg:space-y-20 mb-10">
+    <div class="bg-accent"><HeroSection /></div>
     <CollectionSection />
-    <div class="h-screen"></div>
+    <FeaturedProduct />
+    <PromotionSection />
   </div>
 </template>

@@ -9,4 +9,13 @@
    .section{
       @apply max-w-7xl mx-auto px-3;
    }
+   .primary{
+      @apply p-3 lg:text-xl capitalize transition-all duration-500 ease-in-out bg-white hover:bg-primary text-primary hover:text-white;
+   }
+   .secondary{
+      @apply p-3 lg:text-xl capitalize transition-all duration-500 ease-in-out hover:bg-white bg-primary hover:text-primary text-white;
+   }
+   .tertiary{
+      @apply p-3 lg:text-xl capitalize transition-all duration-500 ease-in-out bg-transparent border border-primary hover:bg-primary text-primary hover:text-white;
+   }
 }
