@@ -3,6 +3,7 @@ import { ref, onMounted, watch, reactive } from "vue";
 import api from "@/api";
 import ProductCard from "@/components/ProductCard.vue";
 import router from "@/router";
+import { COLORS, SIZES } from "@/data";
 const products = ref([]);
 const isLoading = ref(false);
 const filteredProducts = ref([]);
@@ -46,20 +47,6 @@ onMounted(async () => {
 
   filter.value = router.currentRoute.value.query;
 });
-
-const COLORS = [
-  "black",
-  "white",
-  "red",
-  "blue",
-  "green",
-  "yellow",
-  "orange",
-  "purple",
-  "pink",
-  "gray",
-];
-const SIZES = ["xs", "s", "m", "l", "xl", "xxl"];
 </script>
 
 <template>

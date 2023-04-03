@@ -1,7 +1,7 @@
 <script setup>
 import router from "@/router";
 import api from "@/api";
-import ProductDetails from "@/components/ProductDetail.vue";
+import ProductDetail from "@/components/ProductDetail.vue";
 import { ref, onMounted, reactive } from "vue";
 
 const isLoading = ref(false);
@@ -38,7 +38,7 @@ onMounted(() => {
       <img :src="imgs[selectedImg]" alt="image" />
     </div>
     <div class="col-span-3 space-y-10">
-      <ProductDetails :product="product" />
+      <ProductDetail :product="product" />
     </div>
   </div>
 </template>

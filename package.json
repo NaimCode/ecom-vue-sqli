@@ -14,8 +14,11 @@
     "@coreui/vue": "^4.8.0",
     "contentful": "^9.3.5",
     "core-js": "^3.8.3",
+    "firebase": "^9.19.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
+    "vue3-toastify": "^0.1.6",
+    "vuefire": "^3.1.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
