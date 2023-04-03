@@ -2,15 +2,17 @@
 import { useStore } from "vuex";
 
 import { computed } from "vue";
+import { toast } from "vue3-toastify";
 
 const store = useStore();
-
 const cart = computed(() => {
   return store.state.cart;
 });
 
 const removeFromCart = (item) => {
-  store.dispatch("removeFromCart", item);
+  store.dispatch("removeFromCart", item).catch((err) => {
+    toast.error(err.message);
+  });
 };
 
 const clearCart = () => {
@@ -32,6 +34,7 @@ const clearCart = () => {
           <th></th>
         </tr>
       </thead>
+
       <tbody>
         <tr
           v-for="item in cart"
@@ -69,7 +72,7 @@ const clearCart = () => {
           </td>
           <td class="text-lg text-end">
             <button
-              @click="removeFromCart"
+              @click="removeFromCart(item)"
               class="text-red-500 text-xs uppercase font-bold"
             >
               Remove

@@ -66,14 +66,14 @@ export default createStore({
     async addToCart(context, data) {
       const doc = await addDoc(collection(db, "cart"), data);
       if (doc) {
-        context.commit("ADD_TO_CART", data);
+        context.commit("ADD_TO_CART", { ...data, id: doc.id });
       }
     },
     async removeFromCart(context, data) {
-      const doc = await deleteDoc(collection(db, "cart", data.id));
-      if (doc) {
-        context.commit("REMOVE_FROM_CART", data);
-      }
+      console.log("data.id :>> ", data.id);
+      await deleteDoc(doc(collection(db, "cart"), data.id));
+
+      context.commit("REMOVE_FROM_CART", data);
     },
     async fetchCart(context, userUid) {
       const querySnapshot = await getDocs(

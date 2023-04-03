@@ -4,9 +4,10 @@ import { toast } from "vue3-toastify";
 
 import { useStore } from "vuex";
 import { computed } from "vue";
+import Loader from "./Loader.vue";
 
 const store = useStore();
-
+const isLoading = ref(false);
 const user = computed(() => {
   console.log("store.state.user :>> ", store.state.user);
   return store.state.user;
@@ -29,6 +30,7 @@ const onMouseLeave = () => {
 };
 
 const addToCart = async () => {
+  isLoading.value = true;
   console.log("user.value :>> ", user.value);
   await store
     .dispatch("addToCart", {
@@ -40,6 +42,12 @@ const addToCart = async () => {
     })
     .then(() => {
       toast.success("Added to cart");
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    })
+    .finally(() => {
+      isLoading.value = false;
     });
 };
 </script>
@@ -75,7 +83,10 @@ const addToCart = async () => {
           >
             View Product
           </a>
+          <Loader v-if="isLoading" />
+
           <button
+            v-else
             @click="addToCart"
             class="secondary fill-white duration-300 hover:fill-primary transition-all translate-y-16 group-hover:translate-y-0 delay-150"
           >

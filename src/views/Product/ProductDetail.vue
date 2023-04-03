@@ -6,10 +6,11 @@ import { defineProps, ref } from "vue";
 
 import { useStore } from "vuex";
 import { computed } from "vue";
+import Loader from "@/components/Loader.vue";
 
 const { product } = defineProps(["product"]);
 const store = useStore();
-
+const isLoading = ref(false);
 const user = computed(() => {
   console.log("store.state.user :>> ", store.state.user);
   return store.state.user;
@@ -30,7 +31,7 @@ const decrease = () => {
 };
 
 const addToCart = async () => {
-  console.log("user.value :>> ", user.value);
+  isLoading.value = true;
   await store
     .dispatch("addToCart", {
       product: product,
@@ -41,6 +42,12 @@ const addToCart = async () => {
     })
     .then(() => {
       toast.success("Added to cart");
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    })
+    .finally(() => {
+      isLoading.value = false;
     });
 };
 
@@ -106,7 +113,9 @@ const selectColor = (color) => {
           {{ order.quantity }}
         </h6>
         <button @click="increase" class="tertiary">+</button>
+        <Loader v-if="isLoading" />
         <button
+          v-else
           :disabled="!user"
           @click="addToCart"
           class="secondary hover:bg-accent disabled:bg-accent disabled:text-primary disabled:cursor-not-allowed"
