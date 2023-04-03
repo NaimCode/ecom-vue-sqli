@@ -16,8 +16,8 @@ const user = computed(() => {
 });
 const order = ref({
   quantity: 1,
-  size: undefined,
-  color: product.colors ? product.colors[0] : undefined,
+  size: "",
+  color: product.colors ? product.colors[0] : "",
 });
 
 const increase = () => {
@@ -29,9 +29,19 @@ const decrease = () => {
   }
 };
 
-const addToCart = () => {
-  console.log("addToCart");
-  toast(<h1>Error</h1>);
+const addToCart = async () => {
+  console.log("user.value :>> ", user.value);
+  await store
+    .dispatch("addToCart", {
+      product: product,
+      user: user.value.uid,
+      quantity: order.value.quantity,
+      size: order.value.size,
+      color: order.value.color,
+    })
+    .then(() => {
+      toast.success("Added to cart");
+    });
 };
 
 const selectSize = (size) => {
@@ -91,11 +101,11 @@ const selectColor = (color) => {
         </div>
       </div>
       <div class="grid grid-cols-[1fr_1fr_1fr_5fr] gap-3">
-        <button @click="decrease" class="primary border">-</button>
+        <button @click="decrease" class="tertiary">-</button>
         <h6 class="border flex justify-center items-center">
           {{ order.quantity }}
         </h6>
-        <button @click="increase" class="primary border">+</button>
+        <button @click="increase" class="tertiary">+</button>
         <button
           :disabled="!user"
           @click="addToCart"

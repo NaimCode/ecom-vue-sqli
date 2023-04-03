@@ -1,5 +1,16 @@
 <script setup>
 import { defineProps, reactive, ref } from "vue";
+import { toast } from "vue3-toastify";
+
+import { useStore } from "vuex";
+import { computed } from "vue";
+
+const store = useStore();
+
+const user = computed(() => {
+  console.log("store.state.user :>> ", store.state.user);
+  return store.state.user;
+});
 // eslint-disable-next-line vue/no-setup-props-destructure
 const { product } = defineProps(["product"]);
 
@@ -15,6 +26,21 @@ const onMouseLeave = () => {
   setTimeout(() => {
     imgIndex.value = 0;
   }, 200);
+};
+
+const addToCart = async () => {
+  console.log("user.value :>> ", user.value);
+  await store
+    .dispatch("addToCart", {
+      product: product,
+      user: user.value.uid,
+      quantity: 1,
+      size: "",
+      color: product.colors ? product.colors[0] : "",
+    })
+    .then(() => {
+      toast.success("Added to cart");
+    });
 };
 </script>
 
@@ -50,6 +76,7 @@ const onMouseLeave = () => {
             View Product
           </a>
           <button
+            @click="addToCart"
             class="secondary fill-white duration-300 hover:fill-primary transition-all translate-y-16 group-hover:translate-y-0 delay-150"
           >
             <svg

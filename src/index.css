@@ -6,6 +6,10 @@
    body{
     @apply text-primary
    }
+
+   th{
+      @apply font-light py-4
+   }
    .section{
       @apply max-w-7xl mx-auto px-3;
    }
@@ -19,4 +23,5 @@
    .tertiary{
       @apply p-3 lg:text-xl capitalize transition-all duration-500 ease-in-out bg-transparent border border-primary hover:bg-primary text-primary hover:text-white;
    }
+
 }

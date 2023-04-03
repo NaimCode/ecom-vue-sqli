@@ -19,6 +19,8 @@ createApp(App)
   .use(store)
   .use(router)
   .use(Vue3Toastify, {
-    autoClose: 3000,
+    autoClose: 1000,
+
+    position: "top-center",
   })
   .mount("#app");

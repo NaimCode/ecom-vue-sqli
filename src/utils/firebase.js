@@ -6,6 +6,9 @@ import {
 // TODO: Add SDKs for Firebase products that you want to use
 
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyAR9MQ5r3rgUypB-592Ta7TqBc9oB2WqnE",
     authDomain: "ecom-vue.firebaseapp.com",
@@ -18,5 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-export { auth, GoogleAuthProvider };
+
+export { auth, GoogleAuthProvider,db };

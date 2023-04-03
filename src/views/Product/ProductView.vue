@@ -1,7 +1,7 @@
 <script setup>
 import router from "@/router";
 import api from "@/api";
-import ProductDetail from "@/components/ProductDetail.vue";
+import ProductDetail from "@/views/Product/ProductDetail.vue";
 import { ref, onMounted, reactive } from "vue";
 
 const isLoading = ref(false);
