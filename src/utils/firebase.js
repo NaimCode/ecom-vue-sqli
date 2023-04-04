@@ -10,12 +10,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAR9MQ5r3rgUypB-592Ta7TqBc9oB2WqnE",
-    authDomain: "ecom-vue.firebaseapp.com",
-    projectId: "ecom-vue",
-    storageBucket: "ecom-vue.appspot.com",
-    messagingSenderId: "258019880990",
-    appId: "1:258019880990:web:3e13984ce3d09d05023e0f",
+    apiKey:process.env.VUE_APP_FIREBASE_API_KEY,
+    authDomain:process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+    projectId:process.env.VUE_APP_FIREBASE_PROJECT_ID,
+    appId:process.env.VUE_APP_FIREBASE_APP_ID
+
+
 };
 
 // Initialize Firebase
