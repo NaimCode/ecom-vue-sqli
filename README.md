@@ -44,24 +44,23 @@ sequenceDiagram
     participant Vue
     participant Vuex
     participant Firebase
-    participant Auth
     participant Contentful
     User->>Vue: Navigates to product page
-    Vue->>Vuex: Requests product details
-    Vuex->>Contentful: Queries for product details
-    Contentful-->>Vuex: Returns product details
-    Vuex-->>Vue: Returns product details
+    Vue->>Vuex: Requests for data
+    Vuex->>Contentful: Queries data
+    Contentful-->>Vuex: Returns data
+    Vuex-->>Vue: Returns data
     Vue->>Firebase: Stores order details
     Firebase-->>Vue: Returns success status
+      Vue->>Vue: Navigates to order confirmed page
     Vue->>Firebase: Adds product to cart
     Firebase->>Vuex: Adds product to cart
     Vuex->>Firebase: Removes product from cart
     Firebase-->>Vue: Returns success status
     Vue->>Vue: Updates user cart
-    Vue->>Vue: Navigates to order confirmed page
+  
     Vue->>Firebase: Checks authentication
     Firebase-->>Vue: Returns authentication status
-    Vue->>Vue: Renders order confirmed page
 
 ```
 
