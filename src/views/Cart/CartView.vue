@@ -6,7 +6,7 @@ import { toast } from "vue3-toastify";
 
 const store = useStore();
 const cart = computed(() => {
-  return store.state.cart;
+  return store.getters.cart;
 });
 
 const removeFromCart = (item) => {

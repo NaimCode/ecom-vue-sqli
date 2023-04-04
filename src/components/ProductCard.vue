@@ -9,8 +9,7 @@ import Loader from "./Loader.vue";
 const store = useStore();
 const isLoading = ref(false);
 const user = computed(() => {
-  console.log("store.state.user :>> ", store.state.user);
-  return store.state.user;
+  return store.state.user.user;
 });
 // eslint-disable-next-line vue/no-setup-props-destructure
 const { product } = defineProps(["product"]);

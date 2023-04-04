@@ -1,17 +1,9 @@
 <!-- eslint-disable vue/no-unused-vars -->
 <script setup>
-import api from "@/api";
-import { ref, onMounted } from "vue";
-const collections = ref([]);
-
-const fetchCollections = async () => {
-  const data = await api.get("category");
-  collections.value = data;
-};
-
-onMounted(() => {
-  fetchCollections();
-});
+import { computed } from "vue";
+import { useStore } from "vuex";
+const store = useStore();
+const collections = computed(() => store.getters.collections);
 </script>
 
 <template>

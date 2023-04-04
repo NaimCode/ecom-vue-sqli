@@ -7,9 +7,7 @@ export default {
     user: null,
   },
   getters: {
-    user(state) {
-      return state.user;
-    },
+    user: (state) => state.user,
   },
   mutations: {
     SET_USER(state, data) {
@@ -34,6 +32,7 @@ export default {
 
     async fetchUser(context, user) {
       if (user) {
+        context.dispatch("fetchCart", user.uid);
         context.commit("SET_USER", user);
       } else {
         context.commit("SET_USER", null);

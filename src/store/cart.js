@@ -18,7 +18,10 @@ export default {
       return state.cart;
     },
     cartTotal(state) {
-      return state.cart.reduce((total, item) => total + item.price, 0);
+      return state.cart.reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0
+      );
     },
   },
   mutations: {

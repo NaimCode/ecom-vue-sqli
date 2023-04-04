@@ -27,10 +27,7 @@ const logout = async () => {
   }
 };
 
-const user = computed(() => {
-  console.log("store.state.user :>> ", store.state.user.user);
-  return store.state.user.user;
-});
+const user = computed(() => store.getters.user);
 </script>
 
 <template>

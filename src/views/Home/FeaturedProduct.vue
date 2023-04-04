@@ -5,7 +5,7 @@ import { computed } from "vue";
 
 const store = useStore();
 const products = computed(() => {
-  return store.state.products.featuredProducts;
+  return store.getters.featuredProducts;
 });
 </script>
 <template>

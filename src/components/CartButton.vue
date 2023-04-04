@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 const store = useStore();
 const router = useRouter();
 const products = computed(() => {
-  return store.state.cart;
+  return store.getters.cart;
 });
 </script>
 

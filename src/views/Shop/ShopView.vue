@@ -1,51 +1,24 @@
 <script setup>
-import { ref, onMounted, watch, reactive } from "vue";
-import api from "@/api";
+import { onMounted, computed } from "vue";
 import ProductCard from "@/components/ProductCard.vue";
 import router from "@/router";
 import { COLORS, SIZES } from "@/data";
-const products = ref([]);
-const isLoading = ref(false);
-const filteredProducts = ref([]);
-const categories = ref([]);
-const filter = reactive({});
-const search = ref("");
-const onFilter = (filter) => {
-  console.log("filter :>> ", filter);
-  if (Object.keys(filter).length === 0) {
-    filteredProducts.value = products.value;
-  } else {
-    for (let key in filter) {
-      if (key === "category") {
-        filteredProducts.value = products.value.filter((product) => {
-          return product.categories.some((f) => f.fields.title === filter[key]);
-        });
-      }
-    }
-  }
+import { useStore } from "vuex";
+const store = useStore();
+const products = computed(() => store.getters.filteredProducts);
+const collections = computed(() => store.getters.collections);
+const filter = computed(() => store.state.product.filter);
+const onSearch = (e) => {
+  store.dispatch("filter", { search: e.currentTarget.value });
 };
-const onSarch = () => {
-  console.log("search.value :>> ", search.value);
-  if (search.value === "") {
-    filteredProducts.value = products.value;
-  } else {
-    filteredProducts.value = products.value.filter((product) => {
-      return product.title.toLowerCase().includes(search.value.toLowerCase());
-    });
-  }
+const onChangeColor = () => {
+  // store.dispatch("filter", { color: e });
 };
-watch(filter, onFilter);
+const onChangeSize = () => {
+  // store.dispatch("filter", { size: e });
+};
 onMounted(async () => {
-  isLoading.value = true;
-  const categoriesData = await api.get("category");
-  categories.value = categoriesData;
-
-  const data = await api.get("item");
-  products.value = data;
-  filteredProducts.value = data;
-  isLoading.value = false;
-
-  filter.value = router.currentRoute.value.query;
+  console.log(router.currentRoute.value.query);
 });
 </script>
 
@@ -56,18 +29,17 @@ onMounted(async () => {
   <div class="flex flex-row justify-end items-center py-16 section">
     <input
       type="search"
-      @input="onSarch"
-      v-model="search"
+      @input="onSearch"
       placeholder="Search"
-      class="w-[400px] border outline-none border-accent p-2 rounded-sm placeholder:text-accent placeholder:font-light"
+      class="w-[400px] border outline-none border-accent p-2 rounded-sm placeholder:text-gray-400 placeholder:font-light"
     />
   </div>
   <div class="section grid grid-cols-[300px_auto] gap-10">
     <div class="space-y-10">
       <div class="">
-        <h2 class="text-3xl font-light mb-4">Categories</h2>
+        <h2 class="text-3xl font-light mb-4">Collections</h2>
         <div
-          v-for="(item, index) in categories"
+          v-for="(item, index) in collections"
           :key="index"
           class="flex flex-row items-center gap-4 my-3"
         >
@@ -79,33 +51,39 @@ onMounted(async () => {
       <div class="mt-4">
         <h2 class="text-3xl font-light mb-4">Colors</h2>
         <div class="flex flex-wrap gap-4 items-center">
-          <div
+          <button
             v-for="(color, index) in COLORS"
             :key="index"
+            @click="onChangeColor(color)"
             :style="`background-color: ${color}`"
             class="w-8 h-8 rounded-full border"
-          ></div>
+          ></button>
         </div>
       </div>
 
       <hr />
       <div class="mt-4">
-        <h2 class="text-3xl font-light mb-4">Sizes</h2>
+        <h2 class="text-3xl font-light mb-4">
+          Sizes:
+          <h6>{{ filter.size }}</h6>
+        </h2>
         <div class="grid grid-cols-3 gap-2 items-center">
-          <div
+          <button
             v-for="(size, index) in SIZES"
             :key="index"
-            :style="`background-color: ${color}`"
+            @click="onChangeSize(size)"
+            :style="`background-color: ${size}`"
+            :class="filter.size === size ? 'border shadow-xl' : ''"
             class="rounded-md bg-accent py-1 uppercase font-semibold text-sm text-center"
           >
             {{ size }}
-          </div>
+          </button>
         </div>
       </div>
     </div>
     <div class="grid grid-cols-3 gap-6">
       <ProductCard
-        v-for="(product, index) in filteredProducts"
+        v-for="(product, index) in products"
         :key="index"
         :product="product"
       />
