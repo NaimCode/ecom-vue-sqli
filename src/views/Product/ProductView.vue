@@ -24,7 +24,7 @@ onMounted(() => {
 
 <template>
   <div v-if="product" class="section grid grid-cols-7 py-10 gap-10">
-    <div class="space-y-10">
+    <div class="space-y-10 col-span-2 md:col-span-1">
       <img
         v-for="(img, index) in imgs"
         :key="index"
@@ -34,10 +34,10 @@ onMounted(() => {
         class="cursor-pointer transition-all duration-300 delay-75 hover:shadow"
       />
     </div>
-    <div class="col-span-3">
+    <div class="col-span-5 md:col-span-3">
       <img :src="imgs[selectedImg]" alt="image" />
     </div>
-    <div class="col-span-3 space-y-10">
+    <div class="col-span-7 md:col-span-3 space-y-10">
       <ProductDetail :product="product" />
     </div>
   </div>

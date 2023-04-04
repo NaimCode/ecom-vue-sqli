@@ -26,11 +26,11 @@ const clearCart = () => {
 
     <table class="table-auto w-full font-light text-lg">
       <thead>
-        <tr class="uppercase font-light border-b space">
+        <tr class="uppercase font-light border-b space space-x-1">
           <th>Product</th>
-          <th class="text-lg">Variant</th>
-          <th class="text-lg text-end">Quantity</th>
-          <th class="text-lg text-end">Price</th>
+          <th class="text-xs md:text-lg">Variant</th>
+          <th class="text-xs md:text-lg text-end">Quantity</th>
+          <th class="text-xs md:text-lg text-end">Price</th>
           <th></th>
         </tr>
       </thead>
@@ -43,7 +43,7 @@ const clearCart = () => {
           style="margin: 10px 0px"
         >
           <td>
-            <div class="flex items-center gap-3 py-4">
+            <div class="flex items-center gap-1 md:gap-3 py-4">
               <img :src="item.product.urls[0]" alt="image" class="w-12" />
               <div>
                 <router-link
@@ -56,18 +56,18 @@ const clearCart = () => {
             </div>
           </td>
           <td class="text-lg">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1 md:gap-3">
               <p class="text-sm text-gray-500 uppercase font-bold">
                 {{ item.size }}
               </p>
               <div
-                class="w-12 h-5 rounded-full"
+                class="w-6 md:w-12 h-3 md:h-5 rounded-full"
                 :style="{ backgroundColor: item.color }"
               ></div>
             </div>
           </td>
           <td class="text-lg text-end">x{{ item.quantity }}</td>
-          <td class="text-lg text-end">
+          <td class="text-lg text-end px-2">
             ${{ item.product.price * item.quantity }}
           </td>
           <td class="text-lg text-end">
@@ -95,9 +95,9 @@ const clearCart = () => {
     <div v-else class="flex flex-col items-center py-10 gap-10">
       <h6 class="text-4xl font-extralight">Your cart is empty !</h6>
 
-      <router-link to="/shop" class="secondary font-extralight"
-        >Continue Shopping 👉</router-link
-      >
+      <button class="secondary font-extralight">
+        <router-link to="/shop"> Continue Shopping 👉 </router-link>
+      </button>
     </div>
   </section>
 </template>

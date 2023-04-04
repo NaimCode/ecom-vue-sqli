@@ -70,5 +70,17 @@ export default {
       batch.commit();
       context.commit("CLEAR_CART");
     },
+    async placeOrder(context, data) {
+      console.log(" context.getters.user :>> ", context.getters.user);
+      const doc = await addDoc(collection(db, "order"), {
+        ...data,
+        products: context.state.cart.map((item) => item.id),
+        user: context.getters.user.uid,
+        orderedAt: new Date(),
+      });
+      if (doc) {
+        context.dispatch("clearCart");
+      }
+    },
   },
 };

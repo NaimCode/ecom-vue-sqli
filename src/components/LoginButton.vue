@@ -36,7 +36,9 @@ const user = computed(() => store.getters.user);
     @click="login"
     class="flex flex-row gap-1 rounded-full bg-blue-500 text-white p-1 items-center border transition-all outline-primary/0 hover:outline-primary/100 hover:shadow"
   >
-    <span class="text-[12px] font-bold px-1">Sign with Google</span>
+    <span class="text-[12px] font-bold px-1 hidden md:block"
+      >Sign with Google</span
+    >
     <div class="bg-white rounded-full">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -71,12 +73,14 @@ const user = computed(() => store.getters.user);
         <button
           class="flex flex-row gap-1 rounded-full bg-white p-1 items-center border transition-all outline-primary/0 hover:outline-primary/100 hover:shadow"
         >
-          <span class="text-[12px] font-bold px-1">{{ user.displayName }}</span>
+          <span class="text-[12px] font-bold px-1 hidden md:block">{{
+            user.displayName
+          }}</span>
           <img :src="user.photoURL" class="w-8 h-8 rounded-full" alt="user" />
         </button>
       </CDropdownToggle>
       <CDropdownMenu
-        class="translate-y-[50%] drop-shadow-xl border-none active:bg-accent text-[14px] font-bold"
+        class="-translate-x-[80%] md:translate-x-0 translate-y-[50%] drop-shadow-xl border-none active:bg-accent text-[14px] font-bold"
       >
         <CDropdownItem
           component="button"

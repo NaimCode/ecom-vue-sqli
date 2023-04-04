@@ -1,10 +1,10 @@
 <template>
   <nav class="sticky top-0 left-0 h-20 w-full bg-accent z-20">
     <div
-      class="section justify-between h-full flex flex-row gap-3 items-center"
+      class="section justify-between h-full flex flex-row gap-1 items-center"
     >
       <span class="text-2xl font-bold tracking-[.8rem]"> SQLi </span>
-      <span class="font-light space-x-6">
+      <span class="font-light space-x-2">
         <a href="/" class="transition-all font-normal hover:font-bold">
           Home
         </a>
@@ -12,14 +12,14 @@
           Shop</a
         >
       </span>
-      <div class="hidden lg:flex flex-row gap-6 items-center fill-primary">
-        <router-link to="/shop">
+      <div class="flex flex-row gap-6 items-center fill-primary">
+        <router-link to="/shop" class="hidden md:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
-            width="25"
-            height="25"
+            width="30"
+            height="30"
             viewBox="0 0 50 50"
           >
             <path

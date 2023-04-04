@@ -10,7 +10,7 @@ const routes = [
   {
     path: "/shop",
     name: "shop",
-    component: () => import("../views/Shop/ShopView.vue"),
+    component: () => import("../views/ShopView.vue"),
   },
   {
     path: "/product/:id",
@@ -20,12 +20,22 @@ const routes = [
   {
     path: "/cart",
     name: "cart",
-    component: () => import("../views/Cart/CartView.vue"),
+    component: () => import("../views/CartView.vue"),
   },
   {
     path: "/checkout",
     name: "checkout",
-    component: () => import("../views/Checkout/CheckoutView.vue"),
+    component: () => import("../views/CheckoutView.vue"),
+  },
+  {
+    path: "/orderConfirmed",
+    name: "orderConfirmed",
+    component: () => import("../views/OrderConfirmedView.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("../views/NotFoundView.vue"),
   },
 ];
 

@@ -11,10 +11,7 @@ import Loader from "@/components/Loader.vue";
 const { product } = defineProps(["product"]);
 const store = useStore();
 const isLoading = ref(false);
-const user = computed(() => {
-  console.log("store.state.user :>> ", store.state.user);
-  return store.state.user;
-});
+const user = computed(() => store.getters.user);
 const order = ref({
   quantity: 1,
   size: "",
@@ -79,7 +76,7 @@ const selectColor = (color) => {
       <button class="primary">-</button>
     </div> -->
     <h6 class="text-4xl font-bold">$ {{ product.price * order.quantity }}</h6>
-    <div class="space-y-6">
+    <div class="space-y-2 md:space-y-6">
       <h6>
         Size: <span class="font-semibold uppercase">{{ order.size }}</span>
       </h6>
@@ -88,7 +85,7 @@ const selectColor = (color) => {
           v-for="item in SIZES"
           :key="item"
           @click="selectSize(item)"
-          class="w-24 py-2 px-1 border border-gray-500 text-center hover:outline-dashed uppercase"
+          class="w-12 md:w-24 py-2 px-1 border border-gray-500 text-center hover:outline-dashed uppercase"
         >
           {{ item }}
         </button>
@@ -103,7 +100,7 @@ const selectColor = (color) => {
             :key="index"
             :style="`background-color: ${color}`"
             @click="selectColor(color)"
-            class="w-16 h-16 rounded-full border hover:outline-dashed"
+            class="w-8 md:w-16 h-8 md:h-16 rounded-full border hover:outline-dashed"
           ></div>
         </div>
       </div>
