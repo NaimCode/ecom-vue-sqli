@@ -28,8 +28,8 @@ const logout = async () => {
 };
 
 const user = computed(() => {
-  console.log("store.state.user :>> ", store.state.user);
-  return store.state.user;
+  console.log("store.state.user :>> ", store.state.user.user);
+  return store.state.user.user;
 });
 </script>
 

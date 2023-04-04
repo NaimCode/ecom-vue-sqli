@@ -1,14 +1,11 @@
 <script setup>
-import api from "@/api";
 import ProductCard from "@/components/ProductCard.vue";
-import { ref, onMounted } from "vue";
-const products = ref([]);
+import { useStore } from "vuex";
+import { computed } from "vue";
 
-onMounted(async () => {
-  const data = await api.get("item", {
-    "fields.featured": true,
-  });
-  products.value = data;
+const store = useStore();
+const products = computed(() => {
+  return store.state.products.featuredProducts;
 });
 </script>
 <template>
